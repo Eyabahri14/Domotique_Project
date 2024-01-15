@@ -125,6 +125,7 @@ var EchartsLinesBasicLight = function() {
                
               ]
           });
+          const socket = io();
           socket.on("MOTORSERVO", function (data) {
             console.log("Updates from the server:", data);
       
@@ -188,9 +189,9 @@ var EchartsLinesBasicLight = function() {
 
 
     
-const socket = io();
 
 // Listen for resistance data updates from the server
+/*
 socket.on('MOTORSERVO', (data) => {
   console.log("updates from the server  :")
     const resistanceValueElement = document.getElementById('resistanceValue');
@@ -198,4 +199,4 @@ socket.on('MOTORSERVO', (data) => {
   resistanceValueElement.textContent = `Resistance Value: ${data}`;
 
   
-});
+});*/
