@@ -1,95 +1,196 @@
-var gaugeTemp = new LinearGauge({
-    renderTo: 'gauge-temperature',
-    width: 120,
-    height: 400,
-    units: "Temperature C",
-    minValue: 5,
-    startAngle: 90,
-    ticksAngle: 180,
-    maxValue: 40,
-    colorValueBoxRect: "#049faa",
-    colorValueBoxRectEnd: "#049faa",
-    colorValueBoxBackground: "#f1fbfc",
-    valueDec: 2,
-    valueInt: 2,
-    majorTicks: [
-        "0",
-        "5",
-        "10",
-        "15",
-        "20",
-        "25",
-        "30",
-        "35",
-        "40"
-    ],
-    minorTicks: 4,
-    strokeTicks: true,
-    highlights: [
-        {
-            "from": 30,
-            "to": 40,
-            "color": "rgba(200, 50, 50, .75)"
+var EchartsLinesBasicLight = function() {
+
+
+  //
+  // Setup module components
+  //
+
+  // Basic line chart
+  var _linesBasicLightExample = function() {
+      if (typeof echarts == 'undefined') {
+          console.warn('Warning - echarts.min.js is not loaded.');
+          return;
+      }
+
+      var line_basic_element = document.getElementById('line_basic');
+      if (line_basic_element) {
+          var line_basic = echarts.init(line_basic_element);
+          var dynamicData = [];
+          line_basic.setOption({
+
+              // Define colors
+              color: ['#EF5350', '#66BB6A'],
+
+              // Global text styles
+              textStyle: {
+                  fontFamily: 'Roboto, Arial, Verdana, sans-serif',
+                  fontSize: 13
+              },
+
+              // Chart animation duration
+              animationDuration: 750,
+
+              // Setup grid
+              grid: {
+                  left: 0,
+                  right: 40,
+                  top: 35,
+                  bottom: 0,
+                  containLabel: true
+              },
+
+              // Add legend
+              legend: {
+                  data: ['ResistanceValue'],
+                  itemHeight: 8,
+                  itemGap: 20
+              },
+
+              // Add tooltip
+              tooltip: {
+                  trigger: 'axis',
+                  backgroundColor: 'rgba(0,0,0,0.75)',
+                  padding: [10, 15],
+                  textStyle: {
+                      fontSize: 13,
+                      fontFamily: 'Roboto, sans-serif'
+                  }
+              },
+
+              // Horizontal axis
+              xAxis: [{
+                  type: 'category',
+                  boundaryGap: false,
+                  data: ['', '', '', '', '', '', ''],
+                  axisLabel: {
+                      color: '#333'
+                  },
+                  axisLine: {
+                      lineStyle: {
+                          color: '#999'
+                      }
+                  },
+                  splitLine: {
+                      lineStyle: {
+                          color: ['#eee']
+                      }
+                  }
+              }],
+
+              // Vertical axis
+              yAxis: [{
+                  type: 'value',
+                  axisLabel: {
+                      formatter: '{value} °C',
+                      color: '#333'
+                  },
+                  axisLine: {
+                      lineStyle: {
+                          color: '#999'
+                      }
+                  },
+                  splitLine: {
+                      lineStyle: {
+                          color: ['#eee']
+                      }
+                  },
+                  splitArea: {
+                      show: true,
+                      areaStyle: {
+                          color: ['rgba(250,250,250,0.1)', 'rgba(0,0,0,0.01)']
+                      }
+                  }
+              }],
+
+              // Add series
+              series: [
+                  {
+                      name: 'ResistanceValue',
+                      type: 'line',
+                      data: dynamicData,
+                      smooth: true,
+                      symbolSize: 7,
+                      markLine: {
+                          data: [{
+                              type: 'average',
+                              name: 'Average'
+                          }]
+                      },
+                      itemStyle: {
+                          normal: {
+                              borderWidth: 2
+                          }
+                      }
+                  },
+               
+              ]
+          });
+          socket.on("MOTORSERVO", function (data) {
+            console.log("Updates from the server:", data);
+      
+            // Append new data to the array
+            dynamicData.push(data);
+      
+            // Keep only the last 7 elements (or adjust as needed)
+            dynamicData = dynamicData.slice(-7);
+      
+            // Update the chart with the new data
+            line_basic.setOption({
+              series: [
+                {
+                  data: dynamicData,
+                },
+              ],
+            });
+          });
         }
-    ],
-    colorPlate: "#fff",
-    colorBarProgress: "#CC2936",
-    colorBarProgressEnd: "#049faa",
-    borderShadowWidth: 0,
-    borders: false,
-    needleType: "arrow",
-    needleWidth: 2,
-    needleCircleSize: 7,
-    needleCircleOuter: true,
-    needleCircleInner: false,
-    animationDuration: 1500,
-    animationRule: "linear",
-    barWidth: 10,
-  }).draw();
-    
-  var gaugeHum = new RadialGauge({
-    renderTo: 'gauge-humidity',
-    width: 300,
-    height: 300,
-    units: "Luminosity",
-    minValue: 0,
-    maxValue: 100,
-    colorValueBoxRect: "#049faa",
-    colorValueBoxRectEnd: "#049faa",
-    colorValueBoxBackground: "#f1fbfc",
-    valueInt: 2,
-    majorTicks: [
-        "0",
-        "20",
-        "40",
-        "60",
-        "80",
-        "100"
-  
-    ],
-    minorTicks: 4,
-    strokeTicks: true,
-    highlights: [
-        {
-            "from": 80,
-            "to": 100,
-            "color": "#03C0C1"
-        }
-    ],
-    colorPlate: "#fff",
-    borderShadowWidth: 0,
-    borders: false,
-    needleType: "line",
-    colorNeedle: "#007F80",
-    colorNeedleEnd: "#007F80",
-    needleWidth: 2,
-    needleCircleSize: 3,
-    colorNeedleCircleOuter: "#007F80",
-    needleCircleOuter: true,
-    needleCircleInner: false,
-    animationDuration: 1500,
-    animationRule: "linear"
-  }).draw();
+
+
+      //
+      // Resize charts
+      //
+
+      // Resize function
+      var triggerChartResize = function() {
+          line_basic_element && line_basic.resize();
+      };
+
+      // On sidebar width change
+      var sidebarToggle = document.querySelectorAll('.sidebar-control');
+      if (sidebarToggle) {
+          sidebarToggle.forEach(function(togglers) {
+              togglers.addEventListener('click', triggerChartResize);
+          });
+      }
+
+      // On window resize
+      var resizeCharts;
+      window.addEventListener('resize', function() {
+          clearTimeout(resizeCharts);
+          resizeCharts = setTimeout(function () {
+              triggerChartResize();
+          }, 200);
+      });
+  };
+
+
+  //
+  // Return objects assigned to module
+  //
+
+  return {
+      init: function() {
+          _linesBasicLightExample();
+      }
+  }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+
+
     
 const socket = io();
 
