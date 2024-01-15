@@ -1,50 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESP IOT DASHBOARD</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
-<!-- Global stylesheets -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-<link href="global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
-<link href="all.min.css" rel="stylesheet" type="text/css">
-<!-- /global stylesheets -->
+  <!-- Global stylesheets -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+  <link href="global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+  <link href="all.min.css" rel="stylesheet" type="text/css">
+  <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
 
-<!-- Core JS files -->
-<script src="global_assets/js/main/jquery.min.js"></script>
-<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-<!-- /core JS files -->
+  <!-- /global stylesheets -->
 
-<!-- Theme JS files -->
-<script src="global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
+  <!-- Core JS files -->
+  <script src="global_assets/js/main/jquery.min.js"></script>
+  <script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
+  <!-- /core JS files -->
 
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_basic.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_stacked.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_inverted_axes.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_multiple.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_point_values.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_zoom.js"></script>
+  <!-- Theme JS files -->
+  <script src="global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
+
+  <script src="global_assets/js/demo_charts/echarts/light/lines/lines_basic.js"></script>
+  <script src="global_assets/js/demo_charts/echarts/light/lines/lines_stacked.js"></script>
+  <script src="global_assets/js/demo_charts/echarts/light/lines/lines_inverted_axes.js"></script>
+  <script src="global_assets/js/demo_charts/echarts/light/lines/lines_multiple.js"></script>
+  <script src="global_assets/js/demo_charts/echarts/light/lines/lines_point_values.js"></script>
+  <script src="global_assets/js/demo_charts/echarts/light/lines/lines_zoom.js"></script>
 </head>
+
 <body>
   <div id="resistanceValue"> </div>
   <div class="content">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-title">Values of resistanceValue Received From the ESP32 Device</h5>
-      </div>
-
-      <div class="card-body">
-        <div class="chart-container">
-          <div class="chart has-fixed-height" id="line_basic"></div>
+    <div class="row">
+      <!-- First Card -->
+      <div class="col-lg-7">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Line Chart</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <div class="chart has-fixed-height" id="line_basic"></div>
+            </div>
+          </div>
         </div>
       </div>
-
+      <!-- Second Card -->
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Gauge Angle</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+            <canvas id="gauge-humidity"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-  <script src="app.js"></script>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script src="app.js"></script>
+
 </html>

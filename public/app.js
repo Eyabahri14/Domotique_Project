@@ -125,7 +125,10 @@ var EchartsLinesBasicLight = function() {
       
             // Append new data to the array
             dynamicData.push(data);
-      
+            gauge.value = data;
+
+
+            
             // Keep only the last 7 elements (or adjust as needed)
             dynamicData = dynamicData.slice(-7);
       
@@ -180,7 +183,39 @@ var EchartsLinesBasicLight = function() {
   }
 }();
 
-
+var gauge = new RadialGauge({
+    renderTo: 'gauge-humidity',
+    width: 400,
+    height: 400,
+    units: 'Angle',
+    minValue: 0,
+    maxValue: 180,
+    majorTicks: ['Neutre', 'Montée', 'Descente'],
+    minorTicks: 22,
+    strokeTicks: true,
+    highlights: [
+        { from: 0, to: 50, color: 'rgba(0,255,0,.15)' },
+        { from: 50, to: 100, color: 'rgba(255,0,0,.15)' },
+        { from: 100, to: 180, color: 'rgba(0,0,255,.15)' }
+    ],
+    colorPlate: '#fff',
+    borderShadowWidth: 0,
+    valueInt: 2,
+    borders: false,
+    needleType: 'arrow',
+    needleWidth: 2,
+    animationDuration: 1500,
+    animationRule: 'linear',
+    tickSide: 'left',
+    numberSide: 'left',
+    needleSide: 'left',
+    barStrokeWidth: 7,
+    barBeginCircle: false,
+    valueBox: true,
+    valueTextShadow: false,
+    colorValueBoxRect: '#fff',
+    colorValueBoxRectEnd: '#fff'
+}).draw();
 
     
 
