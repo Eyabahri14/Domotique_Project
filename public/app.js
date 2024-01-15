@@ -1,10 +1,4 @@
 var EchartsLinesBasicLight = function() {
-
-
-  //
-  // Setup module components
-  //
-
   // Basic line chart
   var _linesBasicLightExample = function() {
       if (typeof echarts == 'undefined') {
