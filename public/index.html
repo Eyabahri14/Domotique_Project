@@ -6,26 +6,25 @@
   <title>ESP IOT DASHBOARD</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
-<!-- Global stylesheets -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-<link href="global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
-<link href="all.min.css" rel="stylesheet" type="text/css">
-<!-- /global stylesheets -->
+  <!-- Global stylesheets -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+  <link href="global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+  <link href="all.min.css" rel="stylesheet" type="text/css">
+  <!-- /global stylesheets -->
 
-<!-- Core JS files -->
-<script src="global_assets/js/main/jquery.min.js"></script>
-<script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
-<!-- /core JS files -->
+  <!-- Core JS files -->
+  <script src="global_assets/js/main/jquery.min.js"></script>
+  <script src="global_assets/js/main/bootstrap.bundle.min.js"></script>
+  <!-- /core JS files -->
 
-<!-- Theme JS files -->
-<script src="global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
+  <!-- Theme JS files -->
+  <script src="global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
 
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_basic.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_stacked.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_inverted_axes.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_multiple.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_point_values.js"></script>
-<script src="global_assets/js/demo_charts/echarts/light/lines/lines_zoom.js"></script>
+  <!-- Gauge JS -->
+  <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
+
+  <!-- Socket.io -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 </head>
 <body>
   <div id="resistanceValue"> </div>
@@ -40,11 +39,12 @@
           <div class="chart has-fixed-height" id="line_basic"></div>
         </div>
       </div>
-
+    </div>
   </div>
 
+  <!-- Jauge d'humidité -->
+  <canvas id="gauge-humidity" width="400" height="400"></canvas>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

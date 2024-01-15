@@ -6,17 +6,17 @@ const int pinPhotoresistor = A0;
 const int seuilMontee = 85;
 const int seuilDescente = 2000;
 const int resistanceFixe = 10000;
-const int angleMontee = 50;
-const int angleDescente = 140;
-const int angleNeutre = 100;
+const int angleMontee = 45;
+const int angleDescente = 135;
+const int angleNeutre = 90;
 const int angleCalibrageMontee = 135;
 const int angleCalibrageDescente = 90;
 int state = 0;
 
 Servo monServo;
 
-const char *ssid = "iPhone";
-const char *password = "123azert";
+const char *ssid = "S21 FE de jnaina";
+const char *password = "pgpo8954";
 const char *mqttServer = "test.mosquitto.org"; // Replace with your MQTT broker address
 const int mqttPort = 1883;
 const char *mqttUsername = ""; 
@@ -124,7 +124,7 @@ void loop()
         state = 2;
        
         publishToMQTT("descente="  );
-        publishToMQTT(String(angleDescente).c_str() );
+        publishToMQTT(String(angleDescente*2).c_str() );
 
     }
     else if (resistancePhotoresistor > seuilMontee && resistancePhotoresistor < seuilDescente && state == 2)
