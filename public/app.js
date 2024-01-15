@@ -186,10 +186,6 @@ var EchartsLinesBasicLight = function() {
 }();
 
 
-// Initialize module
-// ------------------------------
-
-
 
     
 const socket = io();
