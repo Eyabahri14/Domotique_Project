@@ -103,6 +103,14 @@ void loop()
         monServo.write(angleMontee);
         state = 1;
         publishToMQTT("montee");
+        String combinedData = String(resistancePhotoresistor) + ":" + String(angleMontee);
+        serial.println(combinedData.c_str());
+        publishToMQTT(combinedData.c_str());
+        publishToMQTT(String(angleMontee).c_str() );
+
+
+
+
     }
     else if (resistancePhotoresistor > seuilMontee && resistancePhotoresistor < seuilDescente && state == 1)
     {

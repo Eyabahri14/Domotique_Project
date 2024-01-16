@@ -119,13 +119,17 @@ var EchartsLinesBasicLight = function() {
                
               ]
           });
+
           const socket = io();
           socket.on("MOTORSERVO", function (data) {
             console.log("Updates from the server:", data);
-      
+            
+            var dataArray = data.split(':');
+
+
             // Append new data to the array
-            dynamicData.push(data);
-            gauge.value = data;
+            dynamicData.push(dataArray[0]);
+            gauge.value = dataArray[1];
 
 
             
