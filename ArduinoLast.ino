@@ -102,11 +102,8 @@ void loop()
     {
         monServo.write(angleMontee);
         state = 1;
-        publishToMQTT("montee");
         String combinedData = String(resistancePhotoresistor) + ":" + String(angleMontee);
-        serial.println(combinedData.c_str());
         publishToMQTT(combinedData.c_str());
-        publishToMQTT(String(angleMontee).c_str() );
 
 
 
@@ -116,30 +113,33 @@ void loop()
     {
         monServo.write(angleCalibrageMontee);
         state = 0;
-        publishToMQTT("calibrage_montee");
-        publishToMQTT(String(angleCalibrageMontee).c_str() );
+        String combinedData = String(resistancePhotoresistor) + ":" + String(angleCalibrageMontee);
+        publishToMQTT(combinedData.c_str());
+
     }
     else if (resistancePhotoresistor > seuilMontee && resistancePhotoresistor < seuilDescente && state == 0)
     {
         monServo.write(angleNeutre);
         state = 0;
-        publishToMQTT("neutre");
-         publishToMQTT(String(angleNeutre).c_str() );
+        String combinedData = String(resistancePhotoresistor) + ":" + String(angleNeutre);
+        publishToMQTT(combinedData.c_str());
+
     }
     else if (resistancePhotoresistor > seuilDescente)
     {
         monServo.write(angleDescente);
         state = 2;
        
-        publishToMQTT("descente="  );
-        publishToMQTT(String(angleDescente).c_str() );
+        String combinedData = String(resistancePhotoresistor) + ":" + String(angleDescente);
+        publishToMQTT(combinedData.c_str());
 
     }
     else if (resistancePhotoresistor > seuilMontee && resistancePhotoresistor < seuilDescente && state == 2)
     {
         monServo.write(angleNeutre);
         state = 0;
-        publishToMQTT("calibrage_descente");
+        String combinedData = String(resistancePhotoresistor) + ":" + String(angleNeutre);
+        publishToMQTT(combinedData.c_str());
     }
 
     delay(500);
